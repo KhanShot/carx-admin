@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Вход
+@endsection
 @section('content')
     <!-- Sign In Start -->
     <div class=" justify-content-center align-items-center">
@@ -10,7 +12,6 @@
                         <a href="#" class="">
                             <h3 class="text-primary"><img src="{{asset('img/xcar.svg')}}" width="150" alt=""></h3>
                         </a>
-                        <h3>Вход</h3>
                     </div>
                     <form method="post" action="{{route('login')}}">
                         @csrf

@@ -7,8 +7,9 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import VueEasyLightbox from 'vue-easy-lightbox'
+import timeago from 'vue-timeago3'
+import { ru } from 'date-fns/locale'
 import Echo from "laravel-echo"
-window.Pusher = require('pusher-js');
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -18,6 +19,12 @@ window.Pusher = require('pusher-js');
 
 const app = createApp({});
 app.use(VueEasyLightbox)
+
+// define options
+const timeagoOptions = {
+    locale: ru,
+}
+app.use(timeago, timeagoOptions)
 import ExampleComponent from './components/ExampleComponent.vue';
 import FormComponent from "./components/FormComponent.vue";
 app.component('example-component', ExampleComponent);

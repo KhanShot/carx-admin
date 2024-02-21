@@ -48,6 +48,7 @@ class CampaignController extends Controller
 //
         Campaign::query()->create([
             'user_id' => $user->id,
+            'lead_point' => $request->get('lead_point'),
             'bin' => $request->get('bin'),
             'address' => $request->get('address'),
             'website' => $request->get('website'),

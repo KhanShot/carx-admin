@@ -1,8 +1,27 @@
 /********** Template CSS **********/
 :root {
-    --primary: #009CFF;
+    --primary: #3D73FF !important;
     --light: #F3F6F9;
     --dark: #191C24;
+}
+a.btn.btn-primary, a.btn.btn-warning, a.btn.btn-danger, button.btn.btn-primary{
+    color: white ;
+    border-radius: 50px !important;
+    padding-left: 20px !important;
+    font-weight: bold !important;
+}
+a.btn.btn-primary i, a.btn.btn-warning i, button.btn.btn-info i{
+    margin-left: -8px !important;
+}
+
+input{
+    border-radius: 50px !important;
+    padding-left: 20px !important;
+}
+button{
+    border-radius: 50px !important;
+    padding-left: 20px !important;
+    font-weight: bold !important;
 }
 
 .back-to-top {
@@ -35,7 +54,7 @@
 }
 
 .btn.btn-primary {
-    color: #FFFFFF;
+    color: #3D73FF;
 }
 
 .btn-square {
@@ -123,11 +142,10 @@
 
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
-    padding: 7px 20px;
+    padding: 20px 20px;
     color: var(--dark);
     font-weight: 500;
     border-left: 3px solid var(--light);
-    border-radius: 0 30px 30px 0;
     outline: none;
 }
 

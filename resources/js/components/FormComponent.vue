@@ -19,9 +19,9 @@
                         <td>{{form.user.name ?? ''}}</td>
                         <td>{{form.user.phone ?? ''}}</td>
                         <td>{{form.mark + ' ' + form.model}}</td>
-                        <td>{{ this.time_ago(form.created_at) }}</td>
+                        <td><Timeago :locale="ru" :datetime="form.created_at"></Timeago></td>
                         <td>
-                            <button class="btn btn-primary" data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-primary"  data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i style="margin-left: -8px" class="fa fa-search"></i></button>
                         </td>
                     </tr>
                     </tbody>
@@ -35,8 +35,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="detail_formLabel">{{ form.title }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -82,8 +82,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
@@ -96,22 +95,25 @@
 
 import { useTimeAgo, usePreferredLanguages } from '@vueuse/core'
 import VueEasyLightbox from 'vue-easy-lightbox'
-import Pusher from "pusher-js";
+import timeago from 'vue-timeago3'
 
-Pusher.logToConsole = true;
+// import Pusher from "pusher-js";
 
-let pusher = new Pusher('e550145445ce9016f3fe', {
-    cluster: 'ap1'
-});
-
-let channel = pusher.subscribe('form-created.' + 4);
-channel.bind('event-form_created', function(data) {
-    console.log(data)
-});
+// Pusher.logToConsole = true;
+//
+// let pusher = new Pusher('e550145445ce9016f3fe', {
+//     cluster: 'ap1'
+// });
+//
+// let channel = pusher.subscribe('form-created.' + 4);
+// channel.bind('event-form_created', function(data) {
+//     console.log(data)
+// });
 
 export default {
     components:{
-        VueEasyLightbox
+        VueEasyLightbox,
+        timeago,
     },
     data() {
         return {

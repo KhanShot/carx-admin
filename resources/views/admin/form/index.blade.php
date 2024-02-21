@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Анкета
+@endsection
 @section('content')
 
     <!-- Page Heading -->

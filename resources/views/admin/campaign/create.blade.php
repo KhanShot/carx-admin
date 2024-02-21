@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Создание компании
+@endsection
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -31,6 +33,10 @@
                         <label>Пароль</label>
                         <input type="text" class="form-control bg-white" value="{{old('password')}}" name="password" required>
                     </div>
+                    <div class="form-group mb-3">
+                        <label>Цена за лид</label>
+                        <input type="number" step="0.1" class="form-control bg-white" value="{{old('lead_point')}}" name="lead_point" required>
+                    </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
@@ -49,7 +55,7 @@
                         <input type="text" class="form-control bg-white" value="{{old('phone')}}" name="phone" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label>Как в телеграмм</label>
+                        <label>Телеграм аккаунт</label>
                         <input type="text" class="form-control bg-white" value="{{old('telegram')}}" name="telegram" required>
                     </div>
                 </div>
@@ -92,7 +98,7 @@
                     <div class="form-group mb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="in_kz" @if(old('in_kz') && old('in_kz')=='on') checked @endif name="in_kz">
-                            <label class="form-check-label" for="in_kz">Зарегистрированные в КЗ</label>
+                            <label class="form-check-label" for="in_kz">Не зарегистрированные в РК</label>
                         </div>
                     </div>
                     <div class="form-group d-flex justify-content-end mt-5">
