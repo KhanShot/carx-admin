@@ -43,7 +43,7 @@ class LoginController extends Controller
         if (\auth()->user()->role == 'admin')
             return redirect()->route('admin.dashboard');
         elseif (\auth()->user()->role == 'partner')
-            return redirect()->route('adv.dashboard');
+            return redirect()->route('partner.dashboard');
         return redirect(RouteServiceProvider::HOME);
     }
 }
