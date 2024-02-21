@@ -35,7 +35,7 @@
     </div>
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script defer src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js" ></script>
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js" ></script>

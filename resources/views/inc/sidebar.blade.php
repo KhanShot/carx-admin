@@ -9,7 +9,7 @@
             <a href="{{route('admin.dashboard')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.dashboard') active @endif"><i class="fa fa-tachometer-alt me-2"></i>Дашборд</a>
 
             <a href="{{route('admin.campaign.index')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.campaign.index') active @endif"><i class="fa fa-building me-2"></i>Компании</a>
-            <a href="form.html" class="nav-item nav-link"><i class="fa fa-pen-square me-2"></i>Анкеты</a>
+            <a href="{{route('admin.form.index')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.form.index') active @endif"><i class="fa fa-pen-square me-2"></i>Анкеты</a>
 {{--            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>--}}
             <a href="#" onclick="document.getElementById('logout-form').submit()" class="nav-item nav-link"><i class="fa fa-user-minus me-2"></i>Выйти</a>
 

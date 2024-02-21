@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Form extends Model
 {
     use HasFactory;
+
+    public function images()
+    {
+        return $this->hasMany(FormImage::class, 'form_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

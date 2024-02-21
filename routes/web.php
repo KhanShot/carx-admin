@@ -27,6 +27,10 @@ Route::prefix('admin')->middleware('roles:admin')->name('admin.')->group(functio
     Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('campaign', \App\Http\Controllers\Admin\CampaignController::class);
     Route::post('store', [\App\Http\Controllers\TransactionController::class, 'store'])->name('transaction.store');
+
+    Route::get('forms', [\App\Http\Controllers\Admin\FormController::class, 'index'])->name('form.index');
+
+
 });
 
 Route::prefix('partner')->middleware(['roles:partner'])->name('partner.')->group(function (){
@@ -35,4 +39,6 @@ Route::prefix('partner')->middleware(['roles:partner'])->name('partner.')->group
 });
 
 Route::post('forms', [\App\Http\Controllers\Partner\FormController::class, 'store'])->name('form.store');
+Route::get('forms/get', [\App\Http\Controllers\Admin\FormController::class, 'getForms']);
+
 
