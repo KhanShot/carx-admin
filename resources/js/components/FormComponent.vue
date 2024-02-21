@@ -189,7 +189,7 @@ export default {
 
             let new_images = []
             for (let i = 0; i < form.images.length; i++) {
-                let img = 'http://127.0.0.1:8001/storage'+form.images[i].url
+                let img = 'https://xcar.kz/storage'+form.images[i].url
                 new_images.push(img)
             }
             this.form.images = new_images
