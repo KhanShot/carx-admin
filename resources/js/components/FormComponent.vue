@@ -189,7 +189,7 @@ export default {
             this.form.pledged = form.pledged ? "Да" : "Нет"
             this.form.in_kz = form.in_kz ? "Да" : "Нет"
             this.form.crashed = !form.crashed ? "Аварийное" : "На ходу"
-            this.form.right_hand = form.right_hand ? 'Правый' : 'Левый'
+            this.form.right_hand = !form.right_hand ? 'Правый' : 'Левый'
             this.form.vin = form.vin
             this.form.comment = form.comment
 
