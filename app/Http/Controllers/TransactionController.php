@@ -22,4 +22,10 @@ class TransactionController extends Controller
         return redirect()->route('admin.campaign.index')->with('success', Utils::$MESSAGE_SUCCESS_UPDATED);
 
     }
+
+
+    public function index()
+    {
+        return view('admin.pages.transaction');
+    }
 }

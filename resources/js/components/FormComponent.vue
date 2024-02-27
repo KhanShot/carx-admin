@@ -10,6 +10,7 @@
                         <th scope="col">Номер</th>
                         <th scope="col">Машина</th>
                         <th scope="col">Дата</th>
+                        <th scope="col">Кол-во компании</th>
                         <th scope="col">Действие</th>
                     </tr>
                     </thead>
@@ -19,7 +20,8 @@
                         <td>{{form.user.name ?? ''}}</td>
                         <td>{{form.user.phone ?? ''}}</td>
                         <td>{{form.mark + ' ' + form.model}}</td>
-                        <td><Timeago :locale="ru" :datetime="form.created_at"></Timeago></td>
+                        <td>{{ this.getTime(form.created_at) }}</td>
+                        <td> 0 </td>
                         <td>
                             <button class="btn btn-primary"  data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i style="margin-left: -8px" class="fa fa-search"></i></button>
                         </td>
@@ -96,6 +98,7 @@
 import { useTimeAgo, usePreferredLanguages } from '@vueuse/core'
 import VueEasyLightbox from 'vue-easy-lightbox'
 import timeago from 'vue-timeago3'
+import moment from 'moment';
 
 // import Pusher from "pusher-js";
 
@@ -147,6 +150,10 @@ export default {
         this.getForms()
     },
     methods:{
+        getTime(timestamp){
+            return moment(String(timestamp)).format("HH:MM / DD-MM-YYYY")
+        },
+
         show(index) {
             this.index = index
             this.visible = true
@@ -178,11 +185,11 @@ export default {
             this.form.transmission_type = form.transmission_type
             this.form.drive_unit = form.drive_unit
             this.form.color = form.color
-            this.form.arrested = form.arrested
-            this.form.pledged = form.pledged
-            this.form.in_kz = form.in_kz
-            this.form.crashed = form.crashed
-            this.form.right_hand = form.right_hand
+            this.form.arrested = form.arrested ? "Да" : "Нет"
+            this.form.pledged = form.pledged ? "Да" : "Нет"
+            this.form.in_kz = form.in_kz ? "Да" : "Нет"
+            this.form.crashed = !form.crashed ? "Аварийное" : "На ходу"
+            this.form.right_hand = form.right_hand ? 'Правый' : 'Левый'
             this.form.vin = form.vin
             this.form.comment = form.comment
 

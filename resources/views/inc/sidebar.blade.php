@@ -10,7 +10,7 @@
 
             <a href="{{route('admin.form.index')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.form.index') active @endif"> <img style="margin-right: 10px" src="{{asset('images/Profile.svg')}}"><span>Анкеты</span></a>
             <a href="{{route('admin.campaign.index')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.campaign.index') active @endif"> <img style="margin-right: 10px" src="{{asset('images/Work.svg')}}"><span>Компании</span></a>
-{{--            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>--}}
+            <a href="{{route('admin.transaction.index')}}" class="nav-item nav-link @if (request()->route()->getName() == 'admin.transaction.index') active @endif"><img style="margin-right: 10px" src="{{asset('images/Work.svg')}}"><span>Транзакции</span></a>
             <a href="#" onclick="document.getElementById('logout-form').submit()" class="nav-item nav-link"> <img style="margin-right: 10px" src="{{asset('images/Logout.svg')}}"><span>Выйти</span></a>
 
         </div>
