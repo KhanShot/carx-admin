@@ -10,7 +10,8 @@ import VueEasyLightbox from 'vue-easy-lightbox'
 import timeago from 'vue-timeago3'
 import { ru } from 'date-fns/locale'
 import Echo from "laravel-echo"
-
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -19,7 +20,7 @@ import Echo from "laravel-echo"
 
 const app = createApp({});
 app.use(VueEasyLightbox)
-
+app.use(VueSweetalert2)
 // define options
 const timeagoOptions = {
     locale: ru,

@@ -22,13 +22,13 @@
                     <th scope="col">БИН</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Телефон</th>
-                    <th scope="col">Баланс</th>
+                    <th scope="col">Цена за лид</th>
                     <th scope="col">Год выпуска</th>
-                    <th scope="col">Залоговое авто</th>
-                    <th scope="col">Состоит в аресте</th>
+                    <th scope="col">В залоге</th>
+                    <th scope="col">В аресте</th>
                     <th scope="col">Состояние</th>
                     <th scope="col">Руль</th>
-                    <th scope="col">Расстаможен в РК</th>
+                    <th scope="col">Расстаможен</th>
                     <th scope="col">Действие</th>
                 </tr>
                 </thead>
@@ -40,21 +40,26 @@
                         <td>{{$campaign->bin ?? ''}}</td>
                         <td>{{$campaign->address}}</td>
                         <td>{{$campaign->phone}}</td>
-                        <td>{{ $campaign->balance_sum_sum }} </td>
+                        <td>{{$campaign->lead_point }} </td>
                         <td>{{$campaign->min_year}}</td>
                         <td>{{$campaign->pledged ? 'Да' : 'Нет'}}</td>
                         <td>{{$campaign->arrested ? 'Да' : 'Нет'}}</td>
                         <td>{{$campaign->crashed ? 'Аварийное' : 'На ходу'}}</td>
-                        <td>{{$campaign->right_hand ? 'Справа' : 'Слева'}}</td>
+                        <td>{{$campaign->right_hand ? 'Оба' : 'Слева'}}</td>
                         <td>{{$campaign->in_kz ? 'Да' : 'Нет'}}</td>
                         <td>
-                            <a href="#" class="btn btn-warning">
-                                <i class="fa fa-user-edit text-white"></i></a>
-                            <button class="btn btn-info" data-toggle="modal" data-target="#addBalanceModal"
-                                    data-recipient="{{$campaign->user->name ?? ''}}"
-                                    data-id="{{$campaign->id}}">
-                                <i class="fa fa-cash-register text-white"></i>
-                            </button>
+                            <div class="d-flex">
+                                <a href="{{ route('admin.campaign.edit', $campaign->id ) }}" class="btn btn-warning">
+                                    <i class="fa fa-user-edit text-white"></i></a>
+                                <form method="post" action="{{ route('admin.campaign.destroy', $campaign->id) }}"
+                                      onclick="return confirm('ВЫ действительно хотите удалить компанию и его данные ?')"
+                                    >
+                                    @csrf @method('delete')
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="fa fa-trash-alt text-white"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -63,43 +68,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addBalanceModal" tabindex="-1" role="dialog" aria-labelledby="addBalanceModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addBalanceModalLabel">Пополнить баланс</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('admin.transaction.store')}}" id="balance_form" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Сумма:</label>
-                            <input type="number" class="form-control bg-white" name="sum">
-                        </div>
-                        <input type="hidden" name="campaign_id" id="campaign_id">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" onclick="return document.getElementById('balance_form').submit()" class="btn btn-primary">Пополнить</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection
-@section('js')
-    <script>
-        $('#addBalanceModal').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget)
-            let recipient = button.data('recipient')
-            let id = button.data('id')
-            let modal = $(this)
-            modal.find('#campaign_id').val(id)
-            modal.find('.modal-title').text('Пополнить баланс для ' + recipient)
-        })
-    </script>
-@endsection
+

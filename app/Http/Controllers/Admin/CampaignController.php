@@ -37,7 +37,7 @@ class CampaignController extends Controller
     public function store(CampaignStoreRequest $request)
     {
         $data = $request->all();
-//        dd($data);
+
 
         $user = User::query()->create([
             'name' => $request->get('name'),
@@ -78,7 +78,8 @@ class CampaignController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $campaign = Campaign::query()->find($id);
+        return view('admin.campaign.edit', compact('campaign'));
     }
 
     /**
@@ -86,7 +87,35 @@ class CampaignController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $campaign = Campaign::query()->find($id);
+
+        $campaign->update([
+            'lead_point' => $request->get('lead_point'),
+            'bin' => $request->get('bin'),
+            'address' => $request->get('address'),
+            'website' => $request->get('website'),
+            'phone' => $request->get('phone'),
+            'telegram' => $request->get('telegram'),
+            'min_year' => $request->get('min_year'),
+            'pledged' => ($request->has('pledged') && $request->get('pledged') == 'on') ? 1 : 0,
+            'arrested' => ($request->has('arrested') && $request->get('arrested') == 'on') ? 1 : 0,
+            'crashed' => ($request->has('crashed') && $request->get('crashed') == 'on') ? 1 : 0,
+            'right_hand' => ($request->has('right_hand') && $request->get('right_hand') == 'on') ? 1 : 0,
+            'in_kz' => ($request->has('in_kz') && $request->get('in_kz') == 'on') ? 1 : 0,
+        ]);
+
+        $data = [
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ];
+
+        if ($request->get('password'))
+            $data['password'] = Hash::make($request->get('password'));
+
+        User::query()->find($campaign->user_id)->update($data);
+
+        return redirect()->route('admin.campaign.index')->with('success', 'Компания удалена успешно!');
+
     }
 
     /**
@@ -94,6 +123,12 @@ class CampaignController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $campaign = Campaign::query()->find( $id);
+
+        if (!$campaign)
+            return redirect()->route('admin.campaign.index')->with('error', 'Не удалось удалить.');
+
+        return redirect()->route('admin.campaign.index')->with('success', 'Компания удалена успешно!');
+
     }
 }

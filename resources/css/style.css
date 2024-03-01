@@ -20,7 +20,7 @@ input{
 }
 button{
     border-radius: 50px !important;
-    padding-left: 20px !important;
+    /*padding-left: 20px !important;*/
     font-weight: bold !important;
 }
 

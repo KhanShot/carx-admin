@@ -29,6 +29,7 @@ Route::prefix('admin')->middleware('roles:admin')->name('admin.')->group(functio
     Route::post('store', [\App\Http\Controllers\TransactionController::class, 'store'])->name('transaction.store');
 
     Route::get('forms', [\App\Http\Controllers\Admin\FormController::class, 'index'])->name('form.index');
+    Route::delete('forms/{id}', [\App\Http\Controllers\Admin\FormController::class, 'delete'])->name('form.delete');
     Route::get('transaction', [\App\Http\Controllers\TransactionController::class, 'index'])->name('transaction.index');
 
 

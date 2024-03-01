@@ -5,11 +5,17 @@
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Имя</th>
+
+                        <th scope="col" @click="this.getForms('id', this.order)" class="d-flex justify-content-between"><span>#</span> <span><i :class='"fa fa-arrow-"+(order==="DESC" ? "up" : "down")'></i></span></th>
+                        <th scope="col" >
+                            Имя</th>
                         <th scope="col">Номер</th>
-                        <th scope="col">Машина</th>
-                        <th scope="col">Дата</th>
+                        <th scope="col" @click="this.getForms('mark', this.order)" class="d-flex justify-content-between"><span>Машина</span>
+<!--                            <span><i :class='"fa fa-arrow-"+(order==="DESC" ? "up" : "down")'></i></span>-->
+                        </th>
+                        <th scope="col" @click="this.getForms('created_at', this.order)" class="w-auto"><span>Дата</span>
+<!--                            <span class="text-end"><i :class='"fa fa-arrow-"+(order==="DESC" ? "up" : "down")'></i></span>-->
+                        </th>
                         <th scope="col">Кол-во компании</th>
                         <th scope="col">Действие</th>
                     </tr>
@@ -24,6 +30,10 @@
                         <td> 0 </td>
                         <td>
                             <button class="btn btn-primary"  data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i style="margin-left: -8px" class="fa fa-search"></i></button>
+
+                            <button class="btn btn-danger" @click="deleteForm(form.id)" style="margin-left: 10px" v-if="user.id === 1">
+                                <i class="fa fa-trash-alt text-white"></i>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -72,9 +82,9 @@
                                     <span><b>Тип АКПП:</b> {{ this.form.transmission_type }}</span>
                                     <span><b>Привод:</b> {{ this.form.drive_unit }}</span>
                                     <span><b>Цвет:</b> {{ this.form.color }}</span>
-                                    <span><b>Состоит в аресте?:</b> {{ this.form.arrested }}</span>
-                                    <span><b>Состоит в залоге?:</b> {{ this.form.pledged }}</span>
-                                    <span><b>Растаможен в РК?:</b> {{ this.form.in_kz }}</span>
+                                    <span><b>В аресте?:</b> {{ this.form.arrested }}</span>
+                                    <span><b>В залоге?:</b> {{ this.form.pledged }}</span>
+                                    <span><b>Растаможен?:</b> {{ this.form.in_kz }}</span>
                                     <span><b>Состояние:</b> {{ this.form.crashed }}</span>
                                     <span><b>Руль:</b> {{ this.form.right_hand }}</span>
                                     <span><b>VIN :</b> {{ this.form.vin }}</span>
@@ -95,16 +105,11 @@
 
 <script >
 
-import { useTimeAgo, usePreferredLanguages } from '@vueuse/core'
 import VueEasyLightbox from 'vue-easy-lightbox'
-import timeago from 'vue-timeago3'
 import moment from 'moment';
-
-
 export default {
     components:{
         VueEasyLightbox,
-        timeago,
     },
     props:['user'],
     created() {
@@ -130,7 +135,11 @@ export default {
             index: 0,
             forms: [],
             chats: [],
-            languages: usePreferredLanguages(),
+            order: "ASC",
+            data:[
+                [1, 2],
+                [3, 4],
+            ],
             form:{
                 title: '',
                 mileage: '',
@@ -154,7 +163,7 @@ export default {
     },
     mounted() {
         console.log('Component mounted.')
-        this.getForms()
+        this.getForms('id', 'DESC')
     },
     methods:{
         getTime(timestamp){
@@ -168,12 +177,16 @@ export default {
         handleHide() {
             this.visible = false
         },
-        time_ago(time){
-                return useTimeAgo(time, { updateInterval: 30_000})
-        },
-        getForms(){
+        getForms(sort, order){
+            if (this.order === 'ASC')
+                this.order = 'DESC'
+            else if (this.order === 'DESC')
+                this.order = 'ASC'
+
+            if (!sort)
+                sort = 'id'
             axios
-                .get('/forms/get')
+                .get('/forms/get?sort='+ sort +'&order='+order)
                 .then((response) => {
                     this.forms = response.data;
 
@@ -182,7 +195,30 @@ export default {
 
             })
         },
+        deleteForm(formId){
+            if ( confirm('Вы действительно хотите удалить анкету?')){
+                console.log('true')
+                axios
+                    .delete('/admin/forms/'+formId)
+                    .then((response) => {
+                        this.getForms('id', 'desc')
+                        this.$swal({
+                            title: "Удаление",
+                            text: response.data,
+                            icon: "success"
+                        });
 
+                    }).catch((error)=>{
+                        this.$swal({
+                            title: "Удаление",
+                            text: error.response.data,
+                            icon: "error"
+                        });
+                     })
+                return;
+            }
+            console.log('false')
+        },
         openDetail(form){
             this.form.title = form.mark + " " + form.model
             this.form.mileage = form.mileage
@@ -216,5 +252,8 @@ export default {
 <style>
 .first_row_color{
     --bs-table-bg: #d9f6d0;
+}
+.table{
+    --bs-table-striped-bg: white;
 }
 </style>
