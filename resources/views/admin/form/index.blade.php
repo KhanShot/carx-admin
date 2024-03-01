@@ -11,7 +11,7 @@
 {{--                class="fas fa-user-plus fa-sm text-white-50 mr-2"></i> Создать</a>--}}
     </div>
     <div id="app">
-        <form-component></form-component>
+        <form-component :user="{{ auth()->user() }}"></form-component>
     </div>
 @endsection
 @section('js')

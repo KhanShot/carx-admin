@@ -15,7 +15,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="form in forms">
+                    <tr  class="colored_row " v-for="form in forms">
                         <th scope="row">{{form.id}}</th>
                         <td>{{form.user.name ?? ''}}</td>
                         <td>{{form.user.phone ?? ''}}</td>
@@ -100,29 +100,36 @@ import VueEasyLightbox from 'vue-easy-lightbox'
 import timeago from 'vue-timeago3'
 import moment from 'moment';
 
-// import Pusher from "pusher-js";
-
-// Pusher.logToConsole = true;
-//
-// let pusher = new Pusher('e550145445ce9016f3fe', {
-//     cluster: 'ap1'
-// });
-//
-// let channel = pusher.subscribe('form-created.' + 4);
-// channel.bind('event-form_created', function(data) {
-//     console.log(data)
-// });
 
 export default {
     components:{
         VueEasyLightbox,
         timeago,
     },
+    props:['user'],
+    created() {
+        window.Echo.channel('my-channel')
+        .listen('.my-event', res => {
+            this.chats.push(res.sex)
+        })
+
+        window.Echo.channel('form-store.' + this.user.id)
+            .listen('.form-store_event', res => {
+                this.forms.unshift(res.form)
+                let classes = document.getElementsByClassName('colored_row');
+                let colored_row = classes[0]
+
+                colored_row.classList.add('first_row_color')
+
+                setTimeout(()=> colored_row.classList.remove('first_row_color'),2000)
+            })
+    },
     data() {
         return {
             visible: false,
             index: 0,
             forms: [],
+            chats: [],
             languages: usePreferredLanguages(),
             form:{
                 title: '',
@@ -206,3 +213,8 @@ export default {
 
 }
 </script>
+<style>
+.first_row_color{
+    --bs-table-bg: #d9f6d0;
+}
+</style>

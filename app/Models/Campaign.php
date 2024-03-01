@@ -9,7 +9,7 @@ class Campaign extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'bin', 'address', 'website', 'phone', 'telegram', 'min_year',
+        'bin', 'address', 'website', 'phone', 'telegram', 'min_year', 'telegram_user_id',
         'pledged', 'arrested', 'crashed', 'right_hand', 'in_kz', 'user_id', 'lead_point'
     ];
     public $timestamps = false;

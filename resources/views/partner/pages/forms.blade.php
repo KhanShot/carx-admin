@@ -12,8 +12,7 @@
     </div>
 
     @include('inc.alert')
-
     <div id="app">
-        <form-component></form-component>
+        <form-component :user="{{ auth()->user() }}"></form-component>
     </div>
 @endsection
