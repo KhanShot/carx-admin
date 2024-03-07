@@ -59,7 +59,7 @@ class CampaignController extends Controller
             'arrested' => ($request->has('arrested') && $request->get('arrested') == 'on') ? 1 : 0,
             'crashed' => ($request->has('crashed') && $request->get('crashed') == 'on') ? 1 : 0,
             'right_hand' => ($request->has('right_hand') && $request->get('right_hand') == 'on') ? 1 : 0,
-            'in_kz' => ($request->has('in_kz') && $request->get('in_kz') == 'on') ? 1 : 0,
+            'in_kz' => ($request->has('in_kz') && $request->get('in_kz') == 'on') ? 0 : 1,
         ]);
 
         return redirect()->route('admin.campaign.index')->with('success', Utils::$MESSAGE_SUCCESS_ADDED);
@@ -101,7 +101,7 @@ class CampaignController extends Controller
             'arrested' => ($request->has('arrested') && $request->get('arrested') == 'on') ? 1 : 0,
             'crashed' => ($request->has('crashed') && $request->get('crashed') == 'on') ? 1 : 0,
             'right_hand' => ($request->has('right_hand') && $request->get('right_hand') == 'on') ? 1 : 0,
-            'in_kz' => ($request->has('in_kz') && $request->get('in_kz') == 'on') ? 1 : 0,
+            'in_kz' => ($request->has('in_kz') && $request->get('in_kz') == 'on') ? 0 : 1,
         ]);
 
         $data = [

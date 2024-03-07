@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="in_kz" @if(old('in_kz') && old('in_kz')=='on' || $campaign->in_kz) checked @endif name="in_kz">
+                            <input class="form-check-input" type="checkbox" id="in_kz" @if(old('in_kz') && old('in_kz')=='on' || !$campaign->in_kz) checked @endif name="in_kz">
                             <label class="form-check-label" for="in_kz">Не зарегистрированные в РК</label>
                         </div>
                     </div>
