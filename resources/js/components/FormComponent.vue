@@ -27,7 +27,7 @@
                         <td>{{form.user.phone ?? ''}}</td>
                         <td>{{form.mark + ' ' + form.model}}</td>
                         <td>{{ this.getTime(form.created_at) }}</td>
-                        <td> 0 </td>
+                        <td> {{ 0 }} </td>
                         <td>
                             <button class="btn btn-primary"  data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i style="margin-left: -8px" class="fa fa-search"></i></button>
 
@@ -167,7 +167,7 @@ export default {
     },
     methods:{
         getTime(timestamp){
-            return moment(String(timestamp)).format("HH:MM / DD-MM-YYYY")
+            return moment(String(timestamp)).format("HH:mm / DD-MM-YYYY")
         },
 
         show(index) {
