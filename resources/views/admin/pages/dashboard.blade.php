@@ -21,7 +21,7 @@
                     <i class="fa fa-user-friends fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Кол-во анкет</p>
-                        <h6 class="mb-0">100</h6>
+                        <h6 class="mb-0">{{ $data['forms'] ?? 0 }}</h6>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <i class="fa fa-business-time fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Кол-во компании</p>
-                        <h6 class="mb-0">1</h6>
+                        <h6 class="mb-0">{{ $data['campaigns'] ?? 0 }}</h6>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     <i class="fa fa-cash-register fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Среднее стоимость лида</p>
-                        <h6 class="mb-0">1500 ₸</h6>
+                        <h6 class="mb-0">{{$data['lead_avg'] ?? 0 }} ₸</h6>
                     </div>
                 </div>
             </div>

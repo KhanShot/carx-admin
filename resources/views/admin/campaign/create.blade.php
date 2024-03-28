@@ -43,7 +43,15 @@
                     <div>Контактные данные</div>
                     <hr>
                     <div class="form-group mb-3">
-                        <label>Адресс</label>
+                        <label>Город</label>
+                        <select name="city" class="form-select bg-white" required>
+                            <option value="" @if(old('city') == '') selected @endif></option>
+                            <option value="Алматы" @if(old('city') == 'Алматы') selected @endif>Алматы</option>
+                            <option value="Астана" @if(old('city') == 'Астана') selected @endif>Астана</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Адрес</label>
                         <input type="text" class="form-control bg-white" value="{{old('address')}}" name="address" required>
                     </div>
                     <div class="form-group mb-3">

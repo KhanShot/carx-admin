@@ -38,7 +38,7 @@
                         <td scope="row">{{$campaign->id}}</td>
                         <td>{{$campaign->user->name ?? ''}}</td>
                         <td>{{$campaign->bin ?? ''}}</td>
-                        <td>{{$campaign->address}}</td>
+                        <td>{{$campaign->address}} <br> {{ $campaign->city }}</td>
                         <td>{{$campaign->phone}}</td>
                         <td>{{$campaign->lead_point }} </td>
                         <td>{{$campaign->min_year}}</td>

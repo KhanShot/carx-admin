@@ -44,7 +44,15 @@
                     <div>Контактные данные</div>
                     <hr>
                     <div class="form-group mb-3">
-                        <label>Адресс</label>
+                        <label>Город</label>
+                        <select name="city" class="form-select bg-white" required>
+                            <option value="" @if(old('city', $campaign->city) == '') selected @endif></option>
+                            <option value="Алматы" @if(old('city', $campaign->city) == 'Алматы') selected @endif>Алматы</option>
+                            <option value="Астана" @if(old('city', $campaign->city) == 'Астана') selected @endif>Астана</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Адрес</label>
                         <input type="text" class="form-control bg-white" value="{{old('address', $campaign->address)}}" name="address" required>
                     </div>
                     <div class="form-group mb-3">
@@ -85,7 +93,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="form-group mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="crashed" @if(old('crashed') && old('crashed')=='on' || $campaign->arrested) checked @endif name="crashed">
+                                <input class="form-check-input" type="checkbox" id="crashed" @if(old('crashed') && old('crashed')=='on' || $campaign->crashed) checked @endif name="crashed">
                                 <label class="form-check-label" for="crashed">Аварийное авто</label>
                             </div>
                         </div>
