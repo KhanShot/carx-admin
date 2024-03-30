@@ -75,6 +75,9 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-6">
                                 <div class="group d-flex flex-column">
+                                    <span><b>Имя:</b> {{ this.form.user.name }}</span>
+                                    <span><b>Номер телефона:</b> {{ this.form.user.phone }}</span>
+                                    <span><b>Город:</b> {{ this.form.city }}</span>
                                     <span><b>Год выпуска:</b> {{ this.form.year }}</span>
                                     <span><b>Пробег (км):</b> {{ this.form.mileage }}</span>
                                     <span><b>Объем двигателя (л):</b> {{ this.form.capacity }}</span>
@@ -141,6 +144,8 @@ export default {
                 [3, 4],
             ],
             form:{
+                city: '',
+                user: {},
                 title: '',
                 mileage: '',
                 capacity: '',
@@ -222,6 +227,8 @@ export default {
         openDetail(form){
             this.form.title = form.mark + " " + form.model
             this.form.mileage = form.mileage
+            this.form.user = form.user
+            this.form.city = form.city ?? '-'
             this.form.capacity = form.capacity
             this.form.year = form.year
             this.form.engine_type = form.engine_type

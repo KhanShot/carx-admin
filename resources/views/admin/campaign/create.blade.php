@@ -66,6 +66,10 @@
                         <label>Телеграм аккаунт</label>
                         <input type="text" class="form-control bg-white" value="{{old('telegram')}}" name="telegram" required>
                     </div>
+                    <div class="form-group mb-3">
+                        <label>Телеграм ID</label>
+                        <input type="number" class="form-control bg-white" value="{{old('telegram_user_id')}}" name="telegram_user_id" required>
+                    </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
