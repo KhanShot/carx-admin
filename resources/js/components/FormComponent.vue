@@ -16,7 +16,6 @@
                         <th scope="col" @click="this.getForms('created_at', this.order)" class="w-auto"><span>Дата</span>
 <!--                            <span class="text-end"><i :class='"fa fa-arrow-"+(order==="DESC" ? "up" : "down")'></i></span>-->
                         </th>
-                        <th scope="col">Кол-во компании</th>
                         <th scope="col">Действие</th>
                     </tr>
                     </thead>
@@ -27,7 +26,6 @@
                         <td>{{form.user.phone ?? ''}}</td>
                         <td>{{form.mark + ' ' + form.model}}</td>
                         <td>{{ this.getTime(form.created_at) }}</td>
-                        <td> {{ 0 }} </td>
                         <td>
                             <button class="btn btn-primary"  data-toggle="modal" @click="openDetail(form)" data-target="#detail_form"><i style="margin-left: -8px" class="fa fa-search"></i></button>
 
