@@ -76,9 +76,6 @@
                             <div class="col-md-6">
                                 <div class="group d-flex flex-column">
                                     <span><b>Машина:</b> {{ this.form.title }}</span>
-                                    <span><b>Имя:</b> {{ this.form.user.name }}</span>
-                                    <span><b>Номер телефона:</b> {{ this.form.user.phone }}</span>
-                                    <span><b>Город:</b> {{ this.form.city }}</span>
                                     <span><b>Год выпуска:</b> {{ this.form.year }}</span>
                                     <span><b>Пробег (км):</b> {{ this.form.mileage }}</span>
                                     <span><b>Объем двигателя (л):</b> {{ this.form.capacity }}</span>
@@ -93,6 +90,10 @@
                                     <span><b>Руль:</b> {{ this.form.right_hand }}</span>
                                     <span v-if="this.form.vin !== null"><b>VIN :</b> {{ this.form.vin }}</span>
                                     <span v-if="this.form.comment !== null"><b>Комментарии :</b> {{ this.form.comment }}</span>
+                                    <hr>
+                                    <span><b>Имя:</b> {{ this.form.user.name }}</span>
+                                    <span><b>Номер телефона:</b> {{ this.form.user.phone }}</span>
+                                    <span><b>Город:</b> {{ this.form.city }}</span>
                                 </div>
                             </div>
                         </div>
