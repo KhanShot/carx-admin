@@ -75,6 +75,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-6">
                                 <div class="group d-flex flex-column">
+                                    <span><b>Машина:</b> {{ this.form.title }}</span>
                                     <span><b>Имя:</b> {{ this.form.user.name }}</span>
                                     <span><b>Номер телефона:</b> {{ this.form.user.phone }}</span>
                                     <span><b>Город:</b> {{ this.form.city }}</span>
