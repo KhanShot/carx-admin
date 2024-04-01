@@ -81,7 +81,7 @@
                                     <span><b>Год выпуска:</b> {{ this.form.year }}</span>
                                     <span><b>Пробег (км):</b> {{ this.form.mileage }}</span>
                                     <span><b>Объем двигателя (л):</b> {{ this.form.capacity }}</span>
-                                    <span><b>Тип двигателя:</b> {{ this.form.engine_type }}</span>
+                                    <span><b>Вид топлива:</b> {{ this.form.engine_type }}</span>
                                     <span><b>Тип АКПП:</b> {{ this.form.transmission_type }}</span>
                                     <span><b>Привод:</b> {{ this.form.drive_unit }}</span>
                                     <span><b>Цвет:</b> {{ this.form.color }}</span>
@@ -90,8 +90,8 @@
                                     <span><b>Растаможен?:</b> {{ this.form.in_kz }}</span>
                                     <span><b>Состояние:</b> {{ this.form.crashed }}</span>
                                     <span><b>Руль:</b> {{ this.form.right_hand }}</span>
-                                    <span><b>VIN :</b> {{ this.form.vin }}</span>
-                                    <span><b>Комментарии :</b> {{ this.form.comment }}</span>
+                                    <span v-if="this.form.vin !== null"><b>VIN :</b> {{ this.form.vin }}</span>
+                                    <span v-if="this.form.comment !== null"><b>Комментарии :</b> {{ this.form.comment }}</span>
                                 </div>
                             </div>
                         </div>
