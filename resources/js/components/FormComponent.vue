@@ -237,9 +237,9 @@ export default {
             this.form.color = form.color
             this.form.arrested = form.arrested ? "Да" : "Нет"
             this.form.pledged = form.pledged ? "Да" : "Нет"
-            this.form.in_kz = form.in_kz ? "Да" : "Нет"
+            this.form.in_kz = form.in_kz==='1' ? "Да" : "Нет"
             this.form.crashed = !form.crashed ? "Аварийное" : "На ходу"
-            this.form.right_hand = !form.right_hand ? 'Правый' : 'Левый'
+            this.form.right_hand = form.right_hand === '1' ? 'Справа' : 'Слева'
             this.form.vin = form.vin
             this.form.comment = form.comment
 

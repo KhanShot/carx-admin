@@ -12,7 +12,6 @@ class Campaign extends Model
         'bin', 'address', 'website', 'phone', 'telegram', 'min_year', 'telegram_user_id',
         'pledged', 'arrested', 'crashed', 'right_hand', 'in_kz', 'user_id', 'lead_point', 'city'
     ];
-    public $timestamps = false;
 
     public function user()
     {

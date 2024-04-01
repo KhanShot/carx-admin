@@ -21,27 +21,29 @@ class FormController extends Controller
     public function getForms(Request $request)
     {
         $user = auth()->user();
-        $forms = Form::query();
 
-        $forms = $forms->orderBy($request->get('sort'), $request->get('order'));
+        $forms = Form::query();
 
         if ($user->role == 'partner'){
             $filter = Campaign::query()->where('user_id',$user->id)->first();
             if ($filter){
-                if ($filter->arrested == false)
+                if (!$filter->arrested)
                     $forms->where('arrested', $filter->arrested);
                 if (!$filter->pledged)
                     $forms->where('pledged', $filter->pledged);
-                if (!$filter->in_kz)
+                if ($filter->in_kz)
                     $forms->where('in_kz', $filter->in_kz);
                 if (!$filter->crashed)
                     $forms->where('crashed', $filter->crashed);
                 if (!$filter->right_hand)
                     $forms->where('right_hand', $filter->right_hand);
+                if ($filter->city)
+                    $forms->where('city', $filter->city);
+                $forms = $forms->whereDate('created_at', '>', $filter->created_at);
             }
         }
 
-        return $forms->with(['user','images'])->orderBy('created_at', 'DESC')->get();
+        return $forms->with(['user','images'])->orderBy($request->get('sort'), $request->get('order'))->get();
     }
 
     public function delete($id)
