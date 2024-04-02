@@ -127,7 +127,7 @@
                                 <span>Состояние: {{$campaign->crashed ? 'Авариное' : 'На ходу'}}</span>
                             </div>
                             <div class="text-start">
-                                <span>Руль: {{$campaign->right_hand ? 'Справа' : 'Оба'}}</span>
+                                <span>Руль: {{$campaign->right_hand ? 'Оба' : 'Слева'}}</span>
                             </div>
                             <div class="text-start">
                                 <span>Растаможен в РК: {{$campaign->in_kz ? 'Да' : 'Нет'}}</span>

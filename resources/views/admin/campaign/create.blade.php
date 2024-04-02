@@ -23,11 +23,21 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>БИН</label>
-                        <input type="number" step="1" class="form-control bg-white" value="{{old('bin')}}" name="bin" required>
+                        <input type="number" step="1" class="form-control bg-white @error('bin') is-invalid @enderror" value="{{old('bin')}}" name="bin" required>
+                        @error('bin')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label>Почта(логин)</label>
-                        <input type="email" class="form-control bg-white" value="{{old('email')}}" name="email" required>
+                        <input type="email" class="form-control bg-white @error('email') is-invalid @enderror" value="{{old('email')}}" name="email" required>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label>Пароль</label>
