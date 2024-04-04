@@ -42,7 +42,7 @@ class FormController extends Controller
 
                 if ($filter->min_year)
                     $forms->where('year', '>=', $filter->min_year);
-                $forms = $forms->whereDate('created_at', '>', $filter->created_at);
+                $forms = $forms->whereDate('created_at', '>=', $filter->created_at);
             }
         }
 
