@@ -39,6 +39,9 @@ class FormController extends Controller
                     $forms->where('right_hand', $filter->right_hand);
                 if ($filter->city)
                     $forms->where('city', $filter->city);
+
+                if ($filter->min_year)
+                    $forms->where('year', '>=', $filter->min_year);
                 $forms = $forms->whereDate('created_at', '>', $filter->created_at);
             }
         }
